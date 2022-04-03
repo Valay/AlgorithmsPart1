@@ -7,10 +7,10 @@ public class Percolation {
      * 0 - represents blocked site
      * 1 - represents open site
      */
-    private int[][] grid;
+    private final int[][] grid;
     private int count = 0;
-    private int n;
-    private WeightedQuickUnionUF uf;
+    private final int n;
+    private final WeightedQuickUnionUF uf;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n){
@@ -25,17 +25,6 @@ public class Percolation {
         }
         this.n = n;
         uf = new WeightedQuickUnionUF((n*n)+2);
-
-        runPercolation();
-    }
-
-    private void runPercolation(){
-        while(!percolates()){
-            int site = StdRandom.uniform(0,  n*n);
-            int row = site / n;
-            int col = site % n;
-            open(row+1, col+1);
-        }
     }
 
     // opens the site (row, col) if it is not open already

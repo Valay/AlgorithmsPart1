@@ -1,10 +1,11 @@
+import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
 
-    private double[] means;
-    private int n;
-    private int trials;
+    private final double[] means;
+    private final int n;
+    private final int trials;
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials){
         if(n<=0 || trials<=0){
@@ -21,6 +22,18 @@ public class PercolationStats {
 
     private double runExperiment(int n){
         Percolation p = new Percolation(n);
+        while(!p.percolates()){
+            int site = StdRandom.uniform(0,  n*n);
+            int row = site / n;
+            int col = site % n;
+            p.open(row+1, col+1);
+            // validate
+            /*
+            if(!p.isOpen(row+1, col+1)){
+                throw new RuntimeException("Expected site to be open!");
+            }
+            */
+        }
         return Double.valueOf(p.numberOfOpenSites()) / Double.valueOf(n*n);
     }
 
