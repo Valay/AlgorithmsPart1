@@ -7,10 +7,10 @@ public class Percolation {
      * 0 - represents blocked site
      * 1 - represents open site
      */
-    int[][] grid;
-    int count = 0;
-    int n;
-    WeightedQuickUnionUF uf;
+    private int[][] grid;
+    private int count = 0;
+    private int n;
+    private WeightedQuickUnionUF uf;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n){

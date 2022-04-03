@@ -2,9 +2,9 @@ import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
 
-    double[] means;
-    int n;
-    int trials;
+    private double[] means;
+    private int n;
+    private int trials;
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials){
         if(n<=0 || trials<=0){
