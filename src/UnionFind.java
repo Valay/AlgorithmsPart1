@@ -5,7 +5,7 @@
 public class UnionFind {
 
     int[] id;
-    int[] sz;
+    int[] sz; // Counts the number of objects rooted at that item
     int count;
 
     /**

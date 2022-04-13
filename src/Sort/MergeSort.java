@@ -4,30 +4,37 @@ import edu.princeton.cs.algs4.StdRandom;
 
 public class MergeSort<Item> {
 
-    private void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi){
-
-        for(int i=0; i<=hi; i++){
-            aux[i] = a[i];
+    public void merge(Comparable[] arr, Comparable[] aux, int lo, int mid, int hi){
+        for(int i=lo; i<=hi; i++){
+            aux[i] = arr[i];
         }
 
-        int i=lo, j=mid+1;
-        for(int k=lo; k<=hi; k++){
-            if(i>mid) a[k] = aux[j++];
-            else if(j>hi) a[k] = aux[i++];
-            else if(aux[i].compareTo(aux[j]) <=0 ) a[k] = aux[i++];
-            else a[k] = aux[j++];
+        int p = lo;
+        int q = mid+1;
+        for(int i=lo; i<=hi; i++){
+            if(p>mid){
+                arr[i] = aux[q++];
+            } else if (q > hi){
+                arr[i] = aux[p++];
+            } else if (aux[p].compareTo(aux[q]) <= 0){
+                arr[i] = aux[p++];
+            } else{
+                arr[i] = aux[q++];
+            }
         }
     }
 
-    private void sort(Comparable[] array, Comparable[] aux, int lo, int hi){
+    public void sort(Comparable[] arr, Comparable[] aux, int lo, int hi){
+        if(lo >= hi){
+            return;
+        }
         int mid = lo + (hi - lo) / 2;
-        if(lo >= hi) return;
+        sort(arr, aux, lo, mid);
+        sort(arr, aux, mid+1, hi);
 
-        sort(array, aux, 0, mid);
-        sort(array, aux, mid+1, hi);
-
-        merge(array, aux, lo, mid, hi);
+        merge(arr, aux, lo, mid, hi);
     }
+
 
     public void sort(Comparable[] array){
         Comparable[] aux = new Comparable[array.length];
